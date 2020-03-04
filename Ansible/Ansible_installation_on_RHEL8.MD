@@ -12,7 +12,7 @@
 
 1. Check for Python version  
    ```sh 
-   python --version
+   python3 --version
    ```
 1. Install python-pip package manager  (on Control node)
    ```sh 
