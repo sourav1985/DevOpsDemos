@@ -39,12 +39,26 @@ tomcatup
 access tomcat application from browser on prot 8090  
 http://<Public_IP>:8090
 
-now application is accessible on port 8090. but tomcat application doesnt allow to login from browser. changing a default parameter in context.xml does address this issue
+now application is accessible on port 8090. but tomcat application doesnt allow to login from browser. We found the Tomcat manager is throwing a error page so changing a default parameter in context.xml does address this issue
+
+
+
 ```sh
 #search for context.xml
 find / -name context.xml
 ```
-above command gives 3 context.xml files. comment (<!-- & -->) `Value ClassName` field on files which are under webapp directory. 
+above command gives 3 context.xml files like the below.... 
+
+[root@tomcat ~]# find / -name context.xml
+/opt/tomcat/conf/context.xml
+/opt/tomcat/webapps/examples/META-INF/context.xml
+/opt/tomcat/webapps/host-manager/META-INF/context.xml -->
+/opt/tomcat/webapps/manager/META-INF/context.xml      --> 
+
+-----------------------
+vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
+
+comment (<!-- & -->) `Value ClassName` field on files which are under webapp directory. 
 After that restart tomcat services to effect these changes
 ```sh 
 tomcatdown
